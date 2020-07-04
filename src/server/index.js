@@ -39,13 +39,44 @@ app.post('/submit', (req, res) => {
         if (err) {
           reject(err);
         } else {
-          resolve({ stdout, stderr });
+          var dataToSend;
+          const python = spawn('python', ['script3.py']);
+          // collect data from script
+          python.stdout.on('data', function (data) {
+            //console.log('Pipe data from python script ...');
+            dataToSend = data.toString();
+            console.log(dataToSend);
+            resolve({ dataToSend, stderr });
+            //result[i] = dataToSend;
+          });
+          // in close event we are sure that stream from child process is closed
+          python.on('close', (code) => {
+            //console.log('child process close all stdio with code ${code}');
+            // send data to browser
+            //console.log(dataToSend);
+            //return dataToSend
+          });
+
         }
       });
     });
   }
+  var i = [1, 2, 4, 8, 16, 32, 64, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 2000];
 
-  var result = {};
+  Promise.all(i.map(function (item) {
+    return execP('python3  -m trace --count -C . script1.py ' + item).then(function (data) {
+      return item + " " + data.dataToSend + "\n";
+    });
+  })).then(function (results) {
+    var output = results.join("");
+    console.log(output);
+    // process output here
+  }, function (err) {
+    // process error here
+  });
+
+
+  /*var result = {};
   console.log(i);
   var i = [1, 1001, 2001, 3001, 40001, 5000, 6000];
   Promise.all(i.map(function (item) {
@@ -84,7 +115,7 @@ app.post('/submit', (req, res) => {
   }, function (err) {
     // process error here
   });
-
+  */
   /*
   const { exec } = require('child_process');
   exec(`python3  -m trace --count -C . script1.py ${i}`, (err, stdout, stderr) => {
