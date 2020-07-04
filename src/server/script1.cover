@@ -1,2 +1,1 @@
-   11: for i in range(10):
-   10:  print("HELLO")
+    1: print("A")
