@@ -27,14 +27,67 @@ app.post('/submit', (req, res) => {
       res.send(dataToSend)
   });
   */
-  const { exec } = require('child_process');
   const python_first = spawn('python', ['script0.py', code_value]);
   /*python_first.stdout.on('data3', function (data3) {
     console.log('Lol this is the first result ...');
     console.log(data3.toString());
   });*/
+  function execP(cmd) {
+    return new Promise(function (resolve, reject) {
+      const { exec } = require('child_process');
+      exec(cmd, function (err, stdout, stderr) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve({ stdout, stderr });
+        }
+      });
+    });
+  }
 
-  exec('python3  -m trace --count -C . script1.py', (err, stdout, stderr) => {
+  var result = {};
+  console.log(i);
+  var i = [1, 1001, 2001, 3001, 40001, 5000, 6000];
+  Promise.all(i.map(function (item) {
+    const { exec } = require('child_process');
+    exec(`python3  -m trace --count -C . script1.py ${item}`, (err, stdout, stderr) => {
+      var dataToSend;
+      if (err) {
+        //some err occurred
+        console.error(err);
+      } else {
+        // the *entire* stdout and stderr (buffered)
+        // spawn new child process to call the python script
+        const python = spawn('python', ['script3.py']);
+        // collect data from script
+        python.stdout.on('data', function (data) {
+          //console.log('Pipe data from python script ...');
+          dataToSend = data.toString();
+          //console.log(i)
+          //result[i] = dataToSend;
+        });
+        // in close event we are sure that stream from child process is closed
+        python.on('close', (code) => {
+          //console.log('child process close all stdio with code ${code}');
+          // send data to browser
+          //console.log(dataToSend);
+          //return dataToSend
+        });
+      }
+      resolve(stdout ? dataToSend : stderr);
+    });
+  })).then(function (results) {
+    console.log(results)
+    var output = results.join("");
+    console.log(output);
+    // process output here
+  }, function (err) {
+    // process error here
+  });
+
+  /*
+  const { exec } = require('child_process');
+  exec(`python3  -m trace --count -C . script1.py ${i}`, (err, stdout, stderr) => {
     if (err) {
       //some err occurred
       console.error(err);
@@ -45,18 +98,24 @@ app.post('/submit', (req, res) => {
       var dataToSend;
       // collect data from script
       python.stdout.on('data', function (data) {
-        console.log('Pipe data from python script ...');
+        //console.log('Pipe data from python script ...');
         dataToSend = data.toString();
+        console.log(i)
+        result[i] = dataToSend;
       });
       // in close event we are sure that stream from child process is closed
       python.on('close', (code) => {
-        console.log('child process close all stdio with code ${code}');
+        //console.log('child process close all stdio with code ${code}');
         // send data to browser
-        console.log(dataToSend);
-        res.send(dataToSend);
+        console.log(result);
       });
     }
   });
+  i += 1000;
+
+  */
+
+  //res.send(result);
 })
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
