@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import { SignUp } from './components/SignUp';
-import { PostForm } from './components/PostForm';
+import { PythonForm } from './components/PythonForm';
 
 class App extends Component {
+
   render() {
     return (
-      <Container>
-        <Route exact path="/submit" component={<Result />} />
-        <Route exact path="/" component={<PythonForm />} />
-      </Container>
+      <div>
+        <Route exact path="/submit" />
+        <Route exact path="/" component={PythonForm} />
+      </div >
     );
   }
 }
