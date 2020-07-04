@@ -1,3 +1,7 @@
 import sys
-with open("script1.py", "w") as outfile:
-    outfile.write(sys.argv[1])
+driver = "\nimport sys\nif __name__ == '__main__':\n\tinput_int = sys.argv[1]\n\tf(int(input_int))"
+
+for n in n_list:
+    with open(f"script{n}.py", "w") as outfile:
+        outfile.write(sys.argv[1])
+        outfile.write(driver)
