@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser');
-const { spawn } = require('child_process');
+const { spawn, exec } = require('child_process');
 const app = express()
 const port = 3000
 const router = express.Router();
@@ -29,7 +29,7 @@ app.post('/submit', (req, res) => {
       res.send(dataToSend)
   });
   */
-  const python_first = spawn('python', ['function_writer.py', code_value, n_list]);
+  const python_first = spawn('python3', ['function_writer.py', code_value, n_list]);
   python_first.stdout.on('data', function (data) {
     console.log('Lol this is the first result ...');
     console.log(data.toString());
@@ -42,8 +42,9 @@ app.post('/submit', (req, res) => {
           reject(err);
         } else {
           var dataToSend;
-          const python = spawn('python', ['cover_scrape.py', item]);
+          const python = spawn('python3', ['cover_scrape.py', item]);
           // collect data from script
+
           python.stdout.on('data', function (data) {
             //console.log('Pipe data from python script ...');
             dataToSend = data.toString();
@@ -64,13 +65,32 @@ app.post('/submit', (req, res) => {
     });
   }
 
+  var result = []
   Promise.all(n_list.map(function (item) {
     return execP('python3  -m trace --count -C ./function ./function/function' + item + '.py ' + item, item).then(function (data) {
-      return item + " " + data.dataToSend + "\n";
+      return [item, data.dataToSend];
     });
   })).then(function (results) {
-    var output = results.join("");
-    console.log(output);
+    //var output = results.join("");
+    //result.push(results);
+    console.log(results);
+    const python = spawn('python3', ['regression.py', results]);
+    python.stderr.on('data', function (data) {
+      //console.log(data.toString())
+    });
+    python.stdout.on('data', function (data) {
+      //console.log('Pipe data from python script ...');
+      console.log(data.toString());
+      result = data.toString();
+      //result[i] = dataToSend;
+    });
+    python.on('close', (code) => {
+      //console.log('child process close all stdio with code ${code}');
+      // send data to browser
+      //console.log(dataToSend);
+      //return dataToSend
+      res.send(result)
+    });
     // process output here
   }, function (err) {
     // process error here
