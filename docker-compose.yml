@@ -1,0 +1,24 @@
+version: "3"
+services:
+    client:
+        build: client
+        restart: always
+        ports:
+            - "8000:8000"
+        volumes: [./client:/client, /client/node_modules]
+        links:
+            - api
+        stdin_open: true
+        networks: [webappnetwork]
+    api:
+        build: api
+        restart: always
+        ports:
+            - "9000:9000"
+        volumes: [./api:/api, /api/node_modules]
+        networks: [webappnetwork]
+
+networks:
+    webappnetwork:
+        driver: bridge
+
