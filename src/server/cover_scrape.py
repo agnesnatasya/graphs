@@ -1,5 +1,5 @@
 import sys
-f = open("function" + sys.argv[1] + ".cover", "r")
+f = open("./function/function" + sys.argv[1] + ".cover", "r")
 total = 0
 for line in f:
     splitted = line.split(':')
