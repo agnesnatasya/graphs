@@ -65,7 +65,7 @@ app.post('/submit', (req, res) => {
   }
 
   Promise.all(n_list.map(function (item) {
-    return execP('python3  -m trace --count -C . function' + item + '.py ' + item, item).then(function (data) {
+    return execP('python3  -m trace --count -C ./function ./function/function' + item + '.py ' + item, item).then(function (data) {
       return item + " " + data.dataToSend + "\n";
     });
   })).then(function (results) {
