@@ -3,6 +3,6 @@ driver = "\nimport sys\nif __name__ == '__main__':\n\tinput_int = sys.argv[1]\n\
 #print(sys.argv[2])
 n_list = list(sys.argv[2].split(","))
 for n in n_list:
-    with open("function" + n + ".py", "w") as outfile:
+    with open("./function/function" + n + ".py", "w") as outfile:
         outfile.write(sys.argv[1])
         outfile.write(driver)
