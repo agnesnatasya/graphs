@@ -8,4 +8,4 @@ for line in f:
             total += int(splitted[0].strip())
         except:
             pass
-print(total)
+print(total, end='')
