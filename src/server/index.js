@@ -11,6 +11,8 @@ app.use(bodyParser.json());
 app.post('/submit', (req, res) => {
   code_value = (req.body.code);
   console.log(code_value);
+  var n_list = [1, 2, 4, 8, 16, 32, 64, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 20000];
+
   /*
   var dataToSend;
   // spawn new child process to call the python script
@@ -27,12 +29,12 @@ app.post('/submit', (req, res) => {
       res.send(dataToSend)
   });
   */
-  const python_first = spawn('python', ['script0.py', code_value]);
-  /*python_first.stdout.on('data3', function (data3) {
+  const python_first = spawn('python', ['function_writer.py', code_value, n_list]);
+  python_first.stdout.on('data', function (data) {
     console.log('Lol this is the first result ...');
-    console.log(data3.toString());
-  });*/
-  function execP(cmd) {
+    console.log(data.toString());
+  });
+  function execP(cmd, item) {
     return new Promise(function (resolve, reject) {
       const { exec } = require('child_process');
       exec(cmd, function (err, stdout, stderr) {
@@ -40,12 +42,12 @@ app.post('/submit', (req, res) => {
           reject(err);
         } else {
           var dataToSend;
-          const python = spawn('python', ['script3.py']);
+          const python = spawn('python', ['cover_scrape.py', item]);
           // collect data from script
           python.stdout.on('data', function (data) {
             //console.log('Pipe data from python script ...');
             dataToSend = data.toString();
-            console.log(dataToSend);
+            //console.log(dataToSend);
             resolve({ dataToSend, stderr });
             //result[i] = dataToSend;
           });
@@ -61,10 +63,9 @@ app.post('/submit', (req, res) => {
       });
     });
   }
-  var i = [1, 2, 4, 8, 16, 32, 64, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 2000];
 
-  Promise.all(i.map(function (item) {
-    return execP('python3  -m trace --count -C . script1.py ' + item).then(function (data) {
+  Promise.all(n_list.map(function (item) {
+    return execP('python3  -m trace --count -C . function' + item + '.py ' + item, item).then(function (data) {
       return item + " " + data.dataToSend + "\n";
     });
   })).then(function (results) {
