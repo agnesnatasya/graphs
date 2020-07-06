@@ -3,14 +3,7 @@ import { Form, Input, Header, Button, FormControl } from "react-bootstrap";
 import { VictoryChart, VictoryLine, VictoryScatter } from "victory";
 export const PythonForm = ({ userId }) => {
   const [code, setCode] = useState("");
-  const data = [
-    { x: 0, y: 0 },
-    { x: 1, y: 2 },
-    { x: 2, y: 1 },
-    { x: 3, y: 4 },
-    { x: 4, y: 3 },
-    { x: 5, y: 5 }
-  ];
+  const [coord, setCoord] = useState(null);
 
   return (
     < div >
@@ -43,18 +36,8 @@ export const PythonForm = ({ userId }) => {
                 return response.text();
               })
               .then(function (text) {
-                console.log(text);
+                setCoord(JSON.parse(text).coord);
               });
-            /*
-              {
-            console.log(response.text().result)
-                  setTitle("");
-                  setBody("");
-                });
-              if (response.ok) {
-            console.log("adads");
-                console.log(response.text());
-              }*/
           }}
         >
           Submit
@@ -62,10 +45,10 @@ export const PythonForm = ({ userId }) => {
       </Form>
       <VictoryChart polar={false} height={390}>
         <VictoryLine
-          interpolation="linear" data={data}
+          interpolation="linear" data={coord}
           style={{ data: { stroke: "#c43a31" } }}
         />
-        <VictoryScatter data={data}
+        <VictoryScatter data={coord}
           size={5}
           style={{ data: { fill: "#c43a31" } }}
         />
