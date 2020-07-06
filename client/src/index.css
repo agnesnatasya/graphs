@@ -12,6 +12,33 @@ code {
     monospace;
 }
 
+
 form label {
   display: block;
 }
+
+h1 {
+  display: block;
+  margin-top: 7%;
+  margin-bottom: 3%;
+  margin-left: 5%
+}
+
+div {
+  flex-wrap: "wrap";
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+textarea {
+  resize: none;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+button {
+  resize: none;
+  margin-left: 5%;
+}
+
