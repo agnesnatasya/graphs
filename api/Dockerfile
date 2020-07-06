@@ -4,6 +4,11 @@ FROM node:12
 WORKDIR /api
 # copy package.json into the container at /api
 COPY package*.json /api/
+RUN apt-get update && apt-get install -y \
+    python3-pip
+RUN pip3 install numpy
+RUN pip3 install scipy
+RUN pip3 install matplotlib
 # install dependencies
 RUN npm install
 # Copy the current directory contents into the container at /api
