@@ -8,58 +8,57 @@ export const PythonForm = ({ userId }) => {
 
   return (
     <Container>
-      <div>
-        <div style={{ display: "flex" }}>
-          <div>
-            <Form>
-              <Form.Group controlId="exampleForm.ControlTextarea1">
-                <h1>Write your code!</h1>
+      <Row>
+        <Col xs={12} sm={12} md={6}>
+          <Form>
+            <Form.Group controlId="exampleForm.ControlTextarea1">
+              <h3>Write your code!</h3>
 
-                <Form.Control
-                  as="textarea" rows="15"
-                  placeholder="Put your code here"
-                  value={code}
-                  onChange={(e) => setCode(e.target.value)}
-                />
-              </Form.Group>
-              <Button
-                variant="primary"
-                onClick={async () => {
-                  const post = { code };
-                  const response = await fetch("/submit", {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(post),
+              <Form.Control
+                as="textarea" rows="15"
+                placeholder="Put your code here"
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+              />
+            </Form.Group>
+            <Button
+              variant="primary"
+              onClick={async () => {
+                const post = { code };
+                const response = await fetch("/submit", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(post),
+                })
+                  .then(function (response) {
+                    return response.text();
                   })
-                    .then(function (response) {
-                      return response.text();
-                    })
-                    .then(function (text) {
-                      setCoord(JSON.parse(text).coord);
-                    });
-                }}
-              >
-                Submit
+                  .then(function (text) {
+                    setCoord(JSON.parse(text).coord);
+                  });
+              }}
+            >
+              Submit
           </Button>
-            </Form>
-          </div>
-          <div>
-            <VictoryChart style={{ parent: { maxWidth: "100%" } }} polar={false} height={400} width={400}>
-              <VictoryLine
-                interpolation="natural" data={coord}
-                style={{ data: { stroke: "#c43a31" } }}
-              />
-              <VictoryScatter data={coord}
-                size={3}
-                style={{ data: { fill: "#c43a31" } }}
-              />
-            </VictoryChart>
-          </div>
-        </div>
-      </div >
-    </Container>
+          </Form>
+        </Col>
+        <Col xs={12} sm={12} md={6}>
+          <VictoryChart style={{ parent: { maxWidth: "100%" } }} polar={false} height={400} width={400}>
+            <VictoryLine
+              interpolation="natural" data={coord}
+              style={{ data: { stroke: "#c43a31" } }}
+            />
+            <VictoryScatter data={coord}
+              size={3}
+              style={{ data: { fill: "#c43a31" } }}
+            />
+          </VictoryChart>
+
+        </Col>
+      </Row>
+    </Container >
   );
 };
 
