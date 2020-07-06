@@ -1,7 +1,5 @@
 import os
 import sys
-#os.system('pip install scipy')
-
 import numpy, scipy, matplotlib
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
@@ -107,7 +105,7 @@ for c in range(1, 4):
 max_value_keys = [
     key for key in result.keys() if result[key] == max(result.values())
 ]
-print(max_value_keys)
+print(max_value_keys, end='')
 
 ##########################################################
 # graphics output section
