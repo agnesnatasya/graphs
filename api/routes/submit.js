@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
 
     var result = {}
     Promise.all(n_list.map(function (item) {
-        return execP('python3  -m trace --count -C ./function ./function/function' + item + '.py ' + item, item).then(function (data) {
+        return execP('python3  -m trace --count -C ../function ../function/function' + item + '.py ' + item, item).then(function (data) {
             return [item, data.dataToSend];
         });
     })).then(function (coords) {
