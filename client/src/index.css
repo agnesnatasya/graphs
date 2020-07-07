@@ -35,7 +35,7 @@ textarea {
   margin-left: 5%;
   margin-right: 5%;
   font-family:"Courier" !important;
-  resize: none;
+  resize: none !important;
 
 }
 
@@ -43,4 +43,3 @@ button {
   resize: none;
   margin-left: 5%;
 }
-
