@@ -1,5 +1,6 @@
     1: def f(x):
-    1:   print("C")
+ 6001:   for i in range(x):
+ 6000:     print("A")
     1: import sys
     1: if __name__ == '__main__':
     1:         input_int = sys.argv[1]
