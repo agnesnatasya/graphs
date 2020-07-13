@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand|Raleway|Muli|Tenor+Sans&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -42,4 +44,10 @@ textarea {
 button {
   resize: none;
   margin-left: 5%;
+}
+
+.navbar-brand {
+  font-family: Muli;
+  letter-spacing: .2em;
+  font-weight: 500;
 }
