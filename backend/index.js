@@ -12,48 +12,70 @@ app.post('/submit', (req, res) => {
     code_value = req.body.code;
     console.log(code_value);
     var n_list = [1, 2, 4, 8, 16, 32, 64, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000];
-
-    const python_first = spawn('python3', ['function_writer.py', code_value, n_list]);
+  //var n_list = [1, 2, 4, 8, 16, 32, 64, 100];
+    //const python_first = spawn('python3', ['function_writer.py', code_value, n_list]);
     /*python_first.stdout.on('data', function (data) {
     console.log('Lol this is the first result ...');
     console.log(data.toString());
     });*/
-    python_first.stderr.on('data', function (data) {
-        console.log(data.toString())
-    });
+  const python_first = spawn('python3', ['function_writer.py', code_value, n_list]);
 
-    function execP(cmd, item) {
-        return new Promise(function (resolve, reject) {
-            const { exec } = require('child_process');
-            exec(cmd, function (err, stdout, stderr) {
-                console.log(cmd);
-                if (err) {
-                    reject(err);
-                } else {
-                    var dataToSend;
-                    const python = spawn('python3', ['cover_scrape.py', item]);
-                    python.stderr.on('data', function (data) {
-                        console.log(data.toString())
-                    });
+  function execWrite(item) {
+      console.log(item)
+      return new Promise(function (resolve, reject) {
+        const { exec } = require('child_process');
+        console.log()
+        const python = spawn('python3', ['function_writer.py', code_value, item]);
+        
 
-                    python.stdout.on('data', function (data) {
-                        dataToSend = data.toString();
-                        resolve({ dataToSend, stderr });
-                    });
-                    // in close event we are sure that stream from child process is closed
-                    python.on('close', (code) => {
-                    });
-
-                }
-            });
+        python.stdout.on('data', function (data) {
+          console.log(data.toString())
+          resolve();
         });
+      })
+    }
+
+
+  function execCover(cmd, item, execP) {
+    return new Promise(function (resolve, reject) {
+      const { exec } = require('child_process');
+      console.log()
+      exec(cmd, function (err, stdout, stderr) {
+        if (err) { }
+        execP(item).then(function (data) {
+          resolve([item, data])
+        });
+        
+      });
+    })
+
+  }
+
+    function execP(item) {
+      return new Promise(function (resolve, reject) {
+        console.log("A")
+        var dataToSend;
+        const python = spawn('python3', ['cover_scrape.py', item]);
+        python.stderr.on('data', function (data) {
+            console.log(data.toString())
+        });
+
+        python.stdout.on('data', function (data) {
+            dataToSend = data.toString();
+            resolve(dataToSend);
+        });
+        // in close event we are sure that stream from child process is closed
+        python.on('close', (code) => {
+        });
+      });
     }
 
     var result = {}
     Promise.all(n_list.map(function (item) {
-        return execP('python3  -m trace --count -C ./function ./function/function' + item + '.py ' + item, item).then(function (data) {
-            return [item, data.dataToSend];
-        });
+      console.log(item);
+        return execCover('python3 -m trace --count -C ./function ./function/function' + item + '.py ' + item, item, execP).then(function (data) {
+          return data;
+      })
     })).then(function (coords) {
         console.log(coords)
         coords_in_obj = coords.map(function (result) {
