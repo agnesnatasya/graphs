@@ -1,8 +1,5 @@
     1: def f(x):
-   17:         for i in range(x):
-  272:                 for i in range(x):
- 4352:                         for i in range(x):
- 4096:                                 pass
+    1:         pass
     1: import sys
     1: if __name__ == '__main__':
     1:         input_int = sys.argv[1]
