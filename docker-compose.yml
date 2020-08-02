@@ -1,24 +1,19 @@
 version: "3"
 services:
-    client:
-        build: client
-        restart: always
-        ports:
-            - "8000:8000"
-        volumes: [./client:/client, /client/node_modules]
-        links:
-            - backend
-        stdin_open: true
-        networks: [webappnetwork]
-    backend:
-        build: backend
-        restart: always
-        ports:
-            - "3000:3000"
-        volumes: [./backend:/backend, /backend/node_modules]
-        networks: [webappnetwork]
+  frontend:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    tty: true
 
-networks:
-    webappnetwork:
-        driver: bridge
-
+  backend:
+    restart: always
+    container_name: backend
+    build: ./backend
+    expose:
+      - 5000
+    volumes:
+      - ./backend:/usr/src/app
