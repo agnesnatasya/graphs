@@ -12,6 +12,6 @@ RUN pip3 install -r requirements.txt
 
 COPY . /usr/src/app
 ENV FLASK_APP=visualizer
-RUN ls
+
 ENTRYPOINT [ "flask" ]
 CMD ["run", "--host=0.0.0.0", "--port=5000"]
