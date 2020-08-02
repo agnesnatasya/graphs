@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Form, Row, Col, Button, Spinner, Container } from "react-bootstrap";
 import { VictoryChart, VictoryLine, VictoryScatter } from "victory";
 
-
 export class PythonForm extends React.Component {
   constructor(props) {
     super(props)
@@ -90,6 +89,34 @@ export class PythonForm extends React.Component {
     )
   }
 
+  equation = (exponential, quadratic, logarithm) => {
+    var Latex = require('react-latex');
+    var tag = '$$';
+    var addition = ' + ';
+    var quadraticTerm =
+      quadratic > 1 ?
+        `x^${quadratic}` + addition
+        : quadratic === 1 ?
+          `x` + addition
+          : '';
+    var logarithmTerm =
+      logarithm > 1 ?
+        `log^${logarithm}{y}`
+        : logarithm === 1 ?
+          `log{x}`
+          : '';
+    var exponentialTerm =
+      exponential > 1 ?
+        `${exponential}^x` + addition
+        : exponential === 1 ?
+          (logarithm || quadratic) ? ""
+            : '1'
+            : '';
+    var equation = tag + exponentialTerm + quadraticTerm + logarithmTerm + tag;
+
+    return <Latex displayMode={true}>{equation}</Latex>;
+  }
+
   render() {
     return (
       <Container>
@@ -102,6 +129,7 @@ export class PythonForm extends React.Component {
           <Col>
             {this.state.isFetching ? <Spinner animation="border" /> : null}
             {this.state.coord ? this.chart() : null}
+            {this.equation(1, 1, 1)}
           </Col>
         </Row>
       </Container >
