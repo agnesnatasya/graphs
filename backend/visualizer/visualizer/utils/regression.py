@@ -13,14 +13,14 @@ import warnings
 
 class Predictor:
 
-    def __init__(self, a, b, c, x_list, y_list):
+    def __init__(self, polynomial, logarithm, exponential, x_list, y_list):
         self.x_list = numpy.array(x_list)
         self.y_list = numpy.array(y_list)
-        self.function = lambda x: ((x ** a) * (numpy.log2(x) ** b) * (c ** x))
+        self.function = lambda x: ((x ** polynomial) * (numpy.log2(x) ** logarithm) * (exponential ** x))
         print(self.function(1))
 
     def func(self, x, m, Offset):  # Sigmoid A With Offset from zunzun.com
-        #return poly(a) + Offset
+        #return poly(polynomial) + Offset
         return m * self.function(x) + Offset
 
     # function for genetic algorithm to minimize (sum of squared error)
@@ -38,7 +38,7 @@ class Predictor:
         minY = min(self.y_list)
 
         parameterBounds = []
-        parameterBounds.append([minX, maxX])  # search bounds for a
+        parameterBounds.append([minX, maxX])  # search bounds for polynomial
         parameterBounds.append([0.0, maxY])  # search bounds for Offset
 
         # "seed" the numpy random number generator for repeatable results
@@ -78,14 +78,17 @@ def approximate_time_complexity(x_list, y_list):
     print(y_list)
     result = {}
     if numpy.var(y_list) == 0:
-      return [(0,0,1)]
-    for c in range(1, 4):
-        for b in range(4):
-            for a in range(4):
-                pred = Predictor(a, b, c, x_list, y_list)
-                result[(a, b, c)] = pred.get_parameters_and_deviation()[1]
-    print(result)
-    max_value_keys = [
-        key for key in result.keys() if result[key] == max(result.values())
-    ]
-    return max_value_keys
+        return {"polynomial": 0, "logarithm": 0, "exponential": 1}
+    for exponential in range(1, 4):
+        for logarithm in range(4):
+            for polynomial in range(4):
+                pred = Predictor(polynomial, logarithm, exponential, x_list, y_list)
+                result[(polynomial, logarithm, exponential)] = pred.get_parameters_and_deviation()[1]
+    max_correlation = max(result.values())
+    max_value_keys = [key for key in result.keys() if result[key] == max_correlation][0]
+
+    return {
+        "polynomial": max_value_keys[0],
+        "logarithm": max_value_keys[1],
+        "exponential": max_value_keys[2]
+    }
