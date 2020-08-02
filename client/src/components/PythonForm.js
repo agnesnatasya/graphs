@@ -5,7 +5,7 @@ import { VictoryChart, VictoryLine, VictoryScatter } from "victory";
 export class PythonForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { code: "", coord: null, isFetching: false };
+    this.state = { code: "", coord: null, exponential: 0, polynomial: 0, logarithm: 0, isFetching: false };
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
     this.handleStateOnResponse = this.handleStateOnResponse.bind(this);
@@ -26,7 +26,18 @@ export class PythonForm extends React.Component {
   }
 
   handleStateOnResponse = (text) => {
-    this.setState({ coord: JSON.parse(text).coord, isFetching: false });
+    console.log(text)
+    console.log(JSON.parse(text).coord);
+    console.log("A")
+    console.log(JSON.parse(text).equation);
+    console.log("A");
+    this.setState({
+      coord: JSON.parse(text).coord,
+      exponential: JSON.parse(text).equation.exponential,
+      polynomial: JSON.parse(text).equation.polynomial,
+      logarithm: JSON.parse(text).equation.logarithm,
+      isFetching: false
+    });
   }
 
   handleOnClick = async () => {
@@ -89,15 +100,15 @@ export class PythonForm extends React.Component {
     )
   }
 
-  equation = (exponential, quadratic, logarithm) => {
+  equation = (exponential, polynomial, logarithm) => {
     var Latex = require('react-latex');
     var tag = '$$';
     var addition = ' + ';
-    var quadraticTerm =
-      quadratic > 1 ?
-        `x^${quadratic}` + addition
-        : quadratic === 1 ?
-          `x` + addition
+    var polynomialTerm =
+      polynomial > 1 ?
+        `x^${polynomial}`
+        : polynomial === 1 ?
+          `x`
           : '';
     var logarithmTerm =
       logarithm > 1 ?
@@ -107,12 +118,13 @@ export class PythonForm extends React.Component {
           : '';
     var exponentialTerm =
       exponential > 1 ?
-        `${exponential}^x` + addition
+        `${exponential}^x`
         : exponential === 1 ?
-          (logarithm || quadratic) ? ""
+          (logarithm || polynomial) ? ""
             : '1'
-            : '';
-    var equation = tag + exponentialTerm + quadraticTerm + logarithmTerm + tag;
+          : '';
+    var joinedTerms = ([exponentialTerm, polynomialTerm, logarithmTerm].filter(x => x)).join(addition);
+    var equation = tag + joinedTerms + tag;
 
     return <Latex displayMode={true}>{equation}</Latex>;
   }
@@ -129,7 +141,7 @@ export class PythonForm extends React.Component {
           <Col>
             {this.state.isFetching ? <Spinner animation="border" /> : null}
             {this.state.coord ? this.chart() : null}
-            {this.equation(1, 1, 1)}
+            {this.equation(this.state.exponential, this.state.polynomial, this.state.logarithm)}
           </Col>
         </Row>
       </Container >
