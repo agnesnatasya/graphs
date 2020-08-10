@@ -1,0 +1,9 @@
+.spinner-holder {
+  padding-left: calc(50% - 5rem);
+  padding-top: 5%;
+}
+
+.spinner-border {
+  width: 10rem !important;
+  height: 10rem !important;
+}
