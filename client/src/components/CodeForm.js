@@ -58,7 +58,15 @@ export class CodeForm extends React.Component {
     return (
       <Form>
         <Form.Group controlId="exampleForm.ControlTextarea1">
-          <h3>Write your code!</h3>
+              <p>Write down your algorithm in the box provided and predict its time complexity.
+              </p>
+                Rules:
+                  <ul>
+                    <li>The algorithm should be written in Python </li>
+                    <li>The algorithm should be written in the form of <pre>def f(n)</pre>, where n represents
+              the input size to the algorithm.
+                    </li>
+                  </ul>
           <Form.Control
             as="textarea"
             rows="15"

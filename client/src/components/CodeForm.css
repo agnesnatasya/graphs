@@ -1,3 +1,12 @@
+p {
+  margin-top: 1% !important;
+  font: Lato;
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 80%;
+  margin: 0;
+}
+
 .spinner-holder {
   padding-left: calc(50% - 5rem);
   padding-top: 5%;
@@ -6,4 +15,13 @@
 .spinner-border {
   width: 10rem !important;
   height: 10rem !important;
+}
+
+.container {
+  padding-left: 17% !important;
+  padding-right: 17% !important
+}
+
+pre {
+  display: inline !important;
 }
