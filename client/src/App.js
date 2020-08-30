@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { HeaderBar } from "./components/HeaderBar";
+import { Title } from "./components/Title";
 import { CodeForm } from './components/CodeForm';
 
 
@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <HeaderBar />
+        <Title />
         <CodeForm />
       </div >
     );
