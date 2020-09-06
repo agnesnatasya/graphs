@@ -28,7 +28,6 @@ export class CodeForm extends React.Component {
   }
 
   handleStateOnResponse = (text) => {
-    console.log('asf');
     this.setState({
       coord: JSON.parse(text).coord,
       exponential: JSON.parse(text).equation.exponential,
