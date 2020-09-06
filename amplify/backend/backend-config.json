@@ -1,1 +1,10 @@
-{}
+{
+  "function": {
+    "timecomplexityregression": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    }
+  }
+}
