@@ -11,6 +11,9 @@
 # production
 /build
 
+*matplotlib*
+*numpy*
+*scipy* 
 # misc
 .DS_Store
 .env.local

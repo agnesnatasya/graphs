@@ -7,3 +7,5 @@ The web application is hosted using AWS amplify and this branch contains the AWS
 To make changes to the configured Lambda and API Gateway, go to the directory `amplify/backend/function/timeComplexity` and `amplify/backend/api/timeComplexity` respectively.
 
 If AWS Amplify CLI is configured, you can do `amplify push` after the changes.
+
+To install Python libraries, refer to https://aws.amazon.com/premiumsupport/knowledge-center/lambda-python-package-compatible/
