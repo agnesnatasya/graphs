@@ -1,0 +1,25 @@
+{
+    "AWSEBDockerrunVersion": 2,    
+    "containerDefinitions": [
+        {
+            "essential": true,
+            "name": "backend",
+            "image": "agnesnatasya/time-complexity-backend:1.0",
+            "hostname": "backend",
+            "memory": 300
+        },
+        {
+            "essential": true,
+            "name": "client",
+            "image": "agnesnatasya/time-complexity-client:1.0",
+            "hostname": "client",
+            "portMappings": [
+                {
+                    "hostPort": 8000,
+                    "containerPort": 8000
+                }
+            ],
+            "memory": 300
+        }
+    ]
+}
