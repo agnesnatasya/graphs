@@ -1,17 +1,15 @@
-import function_writer
-import cover_scrape
-import regression
+from .utils import function_writer, regression, cover_scrape
 import os
 
 
 def handler(event, context):
     x_list = [1, 2, 4, 8, 16, 32, 64, 128, 256]
-    code = (event.get('body') or {}).get('code', '')
+    code = event.get('body').get('code')
     y_list = []
     for n in x_list:
         function_writer.write_function(code, str(n))
         os.system(
-            f'python3 -m trace --count -C functions/ functions/f{n}.py {n}'
+            f'python3 -m trace --count -C ./visualizer/functions ./visualizer/functions/f{n}.py {n}'
         )
         result = cover_scrape.scrape_cover(str(n))
         y_list.append(result)

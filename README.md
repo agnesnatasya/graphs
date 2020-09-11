@@ -8,6 +8,7 @@ In the project directory, you can run:
 
 <<<<<<< HEAD
 If AWS Amplify CLI is configured, you can do `amplify push` after the changes.
+<<<<<<< HEAD
 
 To install Python libraries, refer to https://aws.amazon.com/premiumsupport/knowledge-center/lambda-python-package-compatible/
 =======
@@ -72,3 +73,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 >>>>>>> parent of e49f080... Update the README for backend
+=======
+>>>>>>> parent of d806a19... Add functions directory and fix relative path
