@@ -1,15 +1,15 @@
 {
   "prod": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-timecomplexity-prod-11242-authRole",
-      "UnauthRoleArn": "arn:aws:iam::459666585692:role/amplify-timecomplexity-prod-11242-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::459666585692:role/amplify-timecomplexity-prod-11242-authRole",
+      "AuthRoleName": "amplify-timecomplexity-prod-181112-authRole",
+      "UnauthRoleArn": "arn:aws:iam::459666585692:role/amplify-timecomplexity-prod-181112-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::459666585692:role/amplify-timecomplexity-prod-181112-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-timecomplexity-prod-11242-deployment",
-      "UnauthRoleName": "amplify-timecomplexity-prod-11242-unauthRole",
-      "StackName": "amplify-timecomplexity-prod-11242",
-      "StackId": "arn:aws:cloudformation:us-east-1:459666585692:stack/amplify-timecomplexity-prod-11242/30d06120-f064-11ea-b7dd-0ef7f3f34731",
-      "AmplifyAppId": "d13jx3kyzrgbee"
+      "DeploymentBucketName": "amplify-timecomplexity-prod-181112-deployment",
+      "UnauthRoleName": "amplify-timecomplexity-prod-181112-unauthRole",
+      "StackName": "amplify-timecomplexity-prod-181112",
+      "StackId": "arn:aws:cloudformation:us-east-1:459666585692:stack/amplify-timecomplexity-prod-181112/4caf4cf0-f4e0-11ea-8846-12b6a099270b",
+      "AmplifyAppId": "d196g7cjhceru5"
     }
   }
 }
