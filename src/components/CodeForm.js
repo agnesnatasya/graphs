@@ -2,12 +2,23 @@ import React from "react";
 import { Form, Row, Col, Button, Spinner, Container } from "react-bootstrap";
 import { chart } from './Chart.js';
 import { equation } from './Equation.js';
+import Amplify, { API } from 'aws-amplify';
 import "./CodeForm.css";
+
+const apiName = 'timeComplexity';
+const path = '/time-complexity'; 
 
 export class CodeForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { code: "", coord: null, exponential: 0, polynomial: 0, logarithm: 0, isFetching: false };
+      this.state = {
+          code: "",
+          coord: null,
+          exponential: 0,
+          polynomial: 0,
+          logarithm: 0,
+          isFetching: false
+      };
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
     this.handleStateOnResponse = this.handleStateOnResponse.bind(this);
@@ -40,7 +51,7 @@ export class CodeForm extends React.Component {
   handleOnClick = async () => {
     this.setState({ isFetching: true })
     const post = { code: this.state.code };
-      const response = await fetch("https://postman-echo.com/get?foo1=bar1&foo2=bar2", {
+      const response = API.post(apiName, path, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
