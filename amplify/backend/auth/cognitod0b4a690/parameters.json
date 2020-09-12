@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "timecomplexity_identitypool_d7b40fc6",
+    "identityPoolName": "timecomplexity_identitypool_425f20ab",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "timecod7b40fc6",
-    "userPoolName": "timecomplexity_userpool_d7b40fc6",
+    "resourceNameTruncated": "timeco425f20ab",
+    "userPoolName": "timecomplexity_userpool_425f20ab",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "timecod7b40fc6_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "timeco425f20ab_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
     "authSelections": "identityPoolAndUserPool",
-    "resourceName": "cognitoc015f889",
+    "resourceName": "cognitod0b4a690",
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
