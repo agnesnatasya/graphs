@@ -33,12 +33,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "time-complexity",
+            "timeComplexity",
             {
               "Fn::Join": [
                 "",
                 [
-                  "time-complexity",
+                  "timeComplexity",
                   "-",
                   {
                     "Ref": "env"
@@ -68,8 +68,8 @@
         "Layers": [],
         "Timeout": "25",
         "Code": {
-          "S3Bucket": "amplify-timecomplexity-production-141935-deployment",
-          "S3Key": "amplify-builds/timeComplexity-566f385678396a546e59-build.zip"
+          "S3Bucket": "amplify-timecomplexity-prod-173039-deployment",
+          "S3Key": "amplify-builds/timeComplexity-6f2f35646a376249696c-build.zip"
         }
       }
     },
@@ -79,12 +79,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "timecomplexityLambdaRole3513814d",
+            "timecomplexityLambdaRole29d3ac59",
             {
               "Fn::Join": [
                 "",
                 [
-                  "timecomplexityLambdaRole3513814d",
+                  "timecomplexityLambdaRole29d3ac59",
                   "-",
                   {
                     "Ref": "env"
