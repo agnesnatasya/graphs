@@ -6,10 +6,10 @@
             "privacy": {
                 "protected": true,
                 "auth": [
-                    "/POST"
+                    "/GET"
                 ],
                 "unauth": [
-                    "/POST"
+                    "/GET"
                 ]
             },
             "policyResourceName": "/time-complexity"
@@ -25,8 +25,8 @@
     "privacy": {
         "auth": 1,
         "unauth": 1,
-        "authRoleName": "amplify-timecomplexity-production-141935-authRole",
-        "unAuthRoleName": "amplify-timecomplexity-production-141935-unauthRole"
+        "authRoleName": "amplify-timecomplexity-prod-173039-authRole",
+        "unAuthRoleName": "amplify-timecomplexity-prod-173039-unauthRole"
     },
     "dependsOn": [
         {
