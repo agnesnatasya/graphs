@@ -1,0 +1,41 @@
+{
+    "paths": [
+        {
+            "name": "/time-complexity",
+            "lambdaFunction": "timeComplexity",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST"
+                ],
+                "unauth": [
+                    "/POST"
+                ]
+            },
+            "policyResourceName": "/time-complexity"
+        }
+    ],
+    "resourceName": "timeComplexity",
+    "apiName": "timeComplexity",
+    "functionArns": [
+        {
+            "lambdaFunction": "timeComplexity"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 1,
+        "authRoleName": "amplify-timecomplexity-prod-191409-authRole",
+        "unAuthRoleName": "amplify-timecomplexity-prod-191409-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "timeComplexity",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
