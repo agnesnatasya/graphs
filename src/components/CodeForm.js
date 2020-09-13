@@ -59,7 +59,8 @@ export class CodeForm extends React.Component {
       },
       body: JSON.stringify(post),
     })
-      .then(function (response) {
+          .then(function (response) {
+          console.log(response)
         return response.text();
       })
       .then(this.handleStateOnResponse);
