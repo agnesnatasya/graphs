@@ -55,8 +55,7 @@ export class CodeForm extends React.Component {
       const response = API.post(apiName, path, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
+
       },
       body: JSON.stringify(post),
     })
