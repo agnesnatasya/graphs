@@ -4,6 +4,7 @@ import { chart } from './Chart.js';
 import { equation } from './Equation.js';
 import Amplify, { API } from 'aws-amplify';
 import "./CodeForm.css";
+API.configure();
 
 const apiName = 'timeComplexity';
 const path = '/time-complexity'; 
