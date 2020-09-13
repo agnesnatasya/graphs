@@ -21,9 +21,9 @@ def handler(event, context):
                 'OPTIONS,POST,GET'
         },
         'body': json.dumps([])
-    }
-
-    code = event.get('body', {}).get('code')
+        }
+    body = json.loads(event.get('body', '{}') or '{}')
+    code = body.get('code')
     y_list = []
     for n in x_list:
         function_writer.write_function(code, str(n))
