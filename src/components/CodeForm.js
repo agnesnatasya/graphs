@@ -55,12 +55,11 @@ export class CodeForm extends React.Component {
       const response = API.post(apiName, path, {
       method: "POST",
       headers: {
-
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(post),
     })
-          .then(function (response) {
-          console.log(response)
+      .then(function (response) {
         return response.text();
       })
       .then(this.handleStateOnResponse);
