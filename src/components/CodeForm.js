@@ -4,7 +4,6 @@ import { chart } from './Chart.js';
 import { equation } from './Equation.js';
 import Amplify, { API } from 'aws-amplify';
 import "./CodeForm.css";
-API.configure();
 
 const apiName = 'timeComplexity';
 const path = '/time-complexity'; 
@@ -52,17 +51,20 @@ export class CodeForm extends React.Component {
   handleOnClick = async () => {
     this.setState({ isFetching: true })
     const post = { code: this.state.code };
-      const response = API.post(apiName, path, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(post),
-    })
-      .then(function (response) {
-        return response.text();
-      })
-      .then(this.handleStateOnResponse);
+      const response = await fetch(
+         "https://okpl2px1ub.execute-api.us-east-1.amazonaws.com/prod/time-complexity",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(post),
+        }
+      )
+        .then(function (response) {
+          return response.text();
+        })
+        .then(this.handleStateOnResponse);
   }
 
 
