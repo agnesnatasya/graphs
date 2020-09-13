@@ -69,7 +69,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-timecomplexity-prod-191409-deployment",
-          "S3Key": "amplify-builds/timeComplexity-304e5a554c4958536933-build.zip"
+          "S3Key": "amplify-builds/timeComplexity-4d394579646f4d383837-build.zip"
         }
       }
     },
