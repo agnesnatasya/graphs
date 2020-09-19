@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
+import "./Theory.css";
 
 export function Theory() {
   return (
