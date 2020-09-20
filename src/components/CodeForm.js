@@ -89,17 +89,17 @@ export class CodeForm extends React.Component {
     return (
       <div>
         <Row>
-          <Col lg>
+          <Col lg={true}>
             <Button className="btn-example-code" onClick={this.handleOnClickExampleMultipleInputs}>
               Sample function with multiple inputs
             </Button>
           </Col>
-          <Col lg>
+          <Col lg={true}>
             <Button className="btn-example-code" onClick={this.handleOnClickExampleListInput}>
               Sample function with list input
             </Button>
           </Col>
-          <Col lg>
+          <Col lg={true}>
             <Button className="btn-example-code" onClick={this.handleOnClickExampleOtherInput}>
               Sample function with list and other input
             </Button>

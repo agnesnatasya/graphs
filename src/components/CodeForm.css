@@ -26,7 +26,7 @@ pre {
   display: inline !important;
 }
 
-.btn {
+.btn-calculate {
   color: #00000080 !important;
   border-color: #bf9b6d !important;
   margin-top: 1rem;
@@ -37,6 +37,20 @@ pre {
   font-weight: 600 !important;
 }
 
+.btn-example-code {
+  height: 100%;
+  color: #00000080 !important;
+  border-color: #bf9b6d !important;
+  color: black !important;
+  background-color: #dfc5a5 !important;
+  margin: auto;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.col-lg {
+  margin-bottom: 2%;
+}
 
 .btn:hover {
   background-color: #bf9b6d !important;
