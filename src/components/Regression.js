@@ -8,7 +8,7 @@ export function Regression() {
       <Row>
         <Col>
           <h6>
-            What does the time compleixty visualizer actually measure and how does it measures?
+            What does the time complexity visualizer actually measure and how does it measures?
           </h6>
           <p>
             In the background, the visualizer actually inputs different values of <pre>n</pre> into the function that is submitted.
