@@ -23,9 +23,9 @@ export default function App() {
   return (
     <Router>
       <div>
-        <nav class="navbar navbar-expand-sm navbar-light bg-custom header-bar">
+        <nav className="navbar navbar-expand-sm navbar-light bg-custom header-bar">
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarNav"
@@ -33,12 +33,12 @@ export default function App() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link">
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item active">
+                <a className="nav-link">
                   <Nav.Link
                     as={NavLink}
                     exact
@@ -52,8 +52,8 @@ export default function App() {
                   </Nav.Link>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link">
+              <li className="nav-item">
+                <a className="nav-link">
                   <Nav.Link
                     as={NavLink}
                     exact
@@ -67,8 +67,8 @@ export default function App() {
                   </Nav.Link>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link">
+              <li className="nav-item">
+                <a className="nav-link">
                   <Nav.Link
                     as={NavLink}
                     exact
