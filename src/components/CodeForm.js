@@ -84,6 +84,25 @@ export class CodeForm extends React.Component {
     `
     })
   }
+    
+  handleOnClickExampleListInput = () => {
+    this.setState({
+      code: `def f(x):
+  def bubbleSort(sample_list):
+    for j in range(len(sample_list)- 1, 0, -1):
+      for i in range(j):
+        if sample_list[i] > sample_list[i+1]:
+          temp = sample_list[i]
+          sample_list[i] = sample_list[i+1]
+          sample_list[i+1] = temp
+  import random
+  for i in range(x):
+    sample_list = random.sample(range(0, x), x)
+  bubbleSort(sample_list)
+  `
+    })
+  }
+
 
   exampleCodeChoices = () => {
     return (
