@@ -88,21 +88,42 @@ export class CodeForm extends React.Component {
   handleOnClickExampleListInput = () => {
     this.setState({
       code: `def f(x):
-  def bubbleSort(sample_list):
-    for j in range(len(sample_list)- 1, 0, -1):
+  def bubbleSort(arr):
+    for j in range(len(arr)- 1, 0, -1):
       for i in range(j):
-        if sample_list[i] > sample_list[i+1]:
-          temp = sample_list[i]
-          sample_list[i] = sample_list[i+1]
-          sample_list[i+1] = temp
+        if arr[i] > arr[i+1]:
+          temp = arr[i]
+          arr[i] = arr[i+1]
+          arr[i+1] = temp
   import random
   for i in range(x):
-    sample_list = random.sample(range(0, x), x)
-  bubbleSort(sample_list)
+    arr = random.sample(range(0, x), x)
+  bubbleSort(arr)
   `
     })
   }
 
+  handleOnClickExampleOtherInput = () => {
+    this.setState({
+      code: `def f(x):
+  def binarySearch(arr, l, r, x): 
+    if r >= l: 
+      mid = l + (r - l) // 2
+      if arr[mid] == x: 
+          return mid 
+      elif arr[mid] > x: 
+          return binarySearch(arr, l, mid-1, x) 
+      else: 
+          return binarySearch(arr, mid + 1, r, x) 
+    else: 
+      return -1
+  import random
+  for i in range(x):
+    arr = random.sample(range(0, x), x)
+  binarySearch(arr, 0, len(arr)-1, x+1)
+  `
+    })
+  }
 
   exampleCodeChoices = () => {
     return (
