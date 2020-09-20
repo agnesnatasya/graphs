@@ -1,8 +1,8 @@
 h6 {
   margin-top: 3% !important;
   font-family: Lato;
-  font-size: 16px;
+  font-size: 18px !important;
   font-weight: 600 !important;
-  opacity: 80%;
+  opacity: 80% !important;
   margin: 0;
 }
