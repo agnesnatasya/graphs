@@ -3,20 +3,8 @@ import './App.css';
 import { Theory } from "./components/Theory";
 import { Regression } from "./components/Regression";
 import { CodeForm } from './components/CodeForm';
-import Amplify, { API } from "aws-amplify";
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
-
-Amplify.configure({
-  API: {
-    endpoints: [
-      {
-        name: "timeComplexity",
-        endpoint: "https://okpl2px1ub.execute-api.us-east-1.amazonaws.com/prod",
-      },
-    ],
-  },
-});
 
 
 export default function App() {
@@ -38,7 +26,6 @@ export default function App() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item active">
-                <a className="nav-link">
                   <Nav.Link
                     as={NavLink}
                     exact
@@ -50,10 +37,8 @@ export default function App() {
                   >
                     TIME COMPLEXITY VISUALIZER
                   </Nav.Link>
-                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link">
                   <Nav.Link
                     as={NavLink}
                     exact
@@ -65,10 +50,8 @@ export default function App() {
                   >
                     TIME COMPLEXITY THEORY
                   </Nav.Link>
-                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link">
                   <Nav.Link
                     as={NavLink}
                     exact
@@ -80,7 +63,6 @@ export default function App() {
                   >
                     HOW THE VISUALIZER WORKS
                   </Nav.Link>
-                </a>
               </li>
             </ul>
           </div>
