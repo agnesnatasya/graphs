@@ -57,7 +57,7 @@ export class CodeForm extends React.Component {
   handleOnClickCalculate = async () => {
     this.setState({ isFetching: true })
     const post = { code: this.state.code };
-      const response = await fetch(
+      await fetch(
          "https://okpl2px1ub.execute-api.us-east-1.amazonaws.com/prod/time-complexity",
         {
           method: "POST",
