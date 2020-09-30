@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import { Theory } from "./components/Theory";
 import { Regression } from "./components/Regression";
 import { CodeForm } from './components/CodeForm';
 import Amplify, { API } from "aws-amplify";
 import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 
 Amplify.configure({
   API: {
